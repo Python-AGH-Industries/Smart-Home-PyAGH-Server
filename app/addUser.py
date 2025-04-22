@@ -10,8 +10,6 @@ def addUser():
 
     username = request.json["username"]
     password = request.json["password"]
-    print(username)
-    print(password)
 
     if User.query.filter_by(username=username).first() is None:
         newUser = User(username = username)
