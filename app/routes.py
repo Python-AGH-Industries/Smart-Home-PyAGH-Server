@@ -1,5 +1,3 @@
-from flask import request
-
 from app import getAllUsers
 from app.addUser import addUser
 from app.login import login
