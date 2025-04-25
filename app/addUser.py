@@ -1,7 +1,7 @@
 from flask import request
 from werkzeug.security import generate_password_hash
 
-from . import db
+from .database import db
 from app.models import User
 
 def addUser():

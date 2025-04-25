@@ -1,16 +1,18 @@
 from .models import User
 from .routes import routes
+from .database import db
 import os
 
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user, logout_user, login_required, current_user, LoginManager
+from flask import Flask
+from flask_login import LoginManager
 
-db = SQLAlchemy()
 baseDir = os.path.abspath(os.path.dirname(__file__))
 
 def create_app(config_class = "config.Config"):
     app = Flask(__name__, instance_relative_config = True)
+
+    db_dir = os.path.join(baseDir, "../database")
+    os.makedirs(db_dir, exist_ok = True)
 
     app.config["SQLALCHEMY_DATABASE_URI"] = \
         'sqlite:///' + \
