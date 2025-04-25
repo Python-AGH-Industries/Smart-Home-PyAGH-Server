@@ -6,7 +6,7 @@ from app.models import User
 def login():
     username = request.json["username"]
     password = request.json["password"]
-    userData = User.query.filter_by(username=username).first()
+    userData = User.query.filter_by(username = username).first()
 
     if userData is not None:
         if not current_user.is_authenticated:
