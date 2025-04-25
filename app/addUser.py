@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, jsonify
 from werkzeug.security import generate_password_hash
 
 from .database import db
@@ -13,11 +13,7 @@ def addUser():
         newUser.setPassword(password)
         db.session.add(newUser)
         db.session.commit()
-        return "user added"
+        return jsonify({"message": "User added"}), 201
     else:
-        users = User.query.all()
-        for user in users:
-            print(f"ID: {user.id}, Name: {user.username}")
-
-        return "user already exists"
+        return jsonify({"message": "User already exists"}), 400
 
