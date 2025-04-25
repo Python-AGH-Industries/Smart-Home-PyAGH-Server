@@ -4,10 +4,7 @@ from werkzeug.security import generate_password_hash
 from . import db
 from app.models import User
 
-
 def addUser():
-
-
     username = request.json["username"]
     password = request.json["password"]
 

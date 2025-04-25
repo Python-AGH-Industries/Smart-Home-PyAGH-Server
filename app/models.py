@@ -3,13 +3,12 @@ from flask_login import UserMixin, login_manager
 
 from . import db
 
-
 # user database
 class User(UserMixin,db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(200), nullable=False)
-    sensors = db.relationship('Sensor', backref='owner', lazy=True)
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(50), nullable = False)
+    password = db.Column(db.String(200), nullable = False)
+    sensors = db.relationship('Sensor', backref = 'owner', lazy = True)
 
     def setPassword(self, password):
         self.password = generate_password_hash(password)
@@ -20,27 +19,24 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f"<User {self.id} - {self.username}>"
 
-
-
 # sensors database
 class Sensor(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    ownerId = db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
-    roomId = db.Column(db.Integer, nullable=False)
-    unit = db.Column(db.String(50), nullable=False)
-    sensors = db.relationship('Measurement', backref='owner', lazy=True)
+    id = db.Column(db.Integer, primary_key = True)
+    ownerId = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    roomId = db.Column(db.Integer, nullable = False)
+    unit = db.Column(db.String(50), nullable = False)
+    sensors = db.relationship('Measurement', backref = 'owner', lazy = True)
 
     def __repr__(self):
         return f"<Sensor {self.id} - OwnerId:{self.ownerId}>"
 
-
 # sensor reading database
 class Measurement(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    sensorId = db.Column(db.Integer,db.ForeignKey('sensor.id'),nullable=False)
-    measurementTime = db.Column(db.Time,nullable=False)
-    measurementDate = db.Column(db.Date,nullable=False)
-    measurementValue = db.Column(db.Integer,nullable=True)
+    id = db.Column(db.Integer, primary_key = True)
+    sensorId = db.Column(db.Integer, db.ForeignKey('sensor.id'), nullable = False)
+    measurementTime = db.Column(db.Time,nullable = False)
+    measurementDate = db.Column(db.Date,nullable = False)
+    measurementValue = db.Column(db.Integer,nullable = True)
 
     def __repr__(self):
         return f"<Sensor {self.sensorId} - Value:{self.measurementValue}>"
