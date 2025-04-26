@@ -1,5 +1,6 @@
 from .models import UserPlan, SensorType, User
 from .routes import routes
+from .mqttUtils import mqtt_connect
 from .database import db
 import os
 
@@ -46,8 +47,12 @@ def create_app():
 
     with app.app_context():
 
+        # Creating and initializing database
         db.create_all()
         init_enums()
+
+        # Connecting to MQTT broker
+        mqtt_connect()
 
         return app
 
