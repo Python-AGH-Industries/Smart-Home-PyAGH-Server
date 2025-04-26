@@ -1,4 +1,4 @@
-from .models import UserPlan, SensorType, User
+from .models import User, init_enums, init_dummy
 from .routes import routes
 from .mqttUtils import mqtt_connect
 from .database import db
@@ -9,19 +9,6 @@ from flask_login import LoginManager
 
 baseDir = os.path.abspath(os.path.dirname(__file__))
 
-def init_enums():
-    sensor_types = ["TEMPERATURE", "HUMIDITY", "PRESSURE", "LIGHT"]
-    user_plans = [("FREE", 3), ("STANDARD", 6), ("PREMIUM", 9)]
-
-    for type in sensor_types:
-        if SensorType.query.filter_by(name = type).first() is None:
-            db.session.add(SensorType(name = type))
-
-    for plan, max_number in user_plans:
-        if UserPlan.query.filter_by(name = plan).first() is None:
-            db.session.add(UserPlan(name = plan, max_per_type = max_number))
-
-    db.session.commit()
 
 def create_app():
     app = Flask(__name__, instance_relative_config = True)
@@ -50,6 +37,7 @@ def create_app():
         # Creating and initializing database
         db.create_all()
         init_enums()
+        init_dummy()
 
         # Connecting to MQTT broker
         mqtt_connect()
