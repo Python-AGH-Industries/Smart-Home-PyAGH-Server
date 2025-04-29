@@ -29,6 +29,8 @@ def create_app(config_class="config.Config"):
 
     from .routes import routes
 
+
+
     routes(app)
 
     with app.app_context():
