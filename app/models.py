@@ -4,6 +4,9 @@ from sqlalchemy import event
 
 from .database import db
 
+sensor_types = ["TEMPERATURE", "HUMIDITY", "PRESSURE", "LIGHT"]
+user_plans = [("FREE", 3), ("STANDARD", 6), ("PREMIUM", 9)]
+
 # enum table holding possible sensor types
 class SensorType(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -111,10 +114,14 @@ class Measurement(db.Model):
     def __repr__(self):
         return f"<Sensor {self.sensorId} - Value:{self.measurementValue}>"
 
-def init_enums():
-    sensor_types = ["TEMPERATURE", "HUMIDITY", "PRESSURE", "LIGHT"]
-    user_plans = [("FREE", 3), ("STANDARD", 6), ("PREMIUM", 9)]
+def type_name_to_id(type_name):
+    return SensorType.query.filter_by(name = type_name).first()
 
+def get_max_per_user(user_id):
+    userPlan = User.query.filter_by(id = user_id).first().userplan_id
+    return UserPlan.query.filter_by(id = userPlan).first().max_per_type
+
+def init_enums():
     for type in sensor_types:
         if SensorType.query.filter_by(name = type).first() is None:
             db.session.add(SensorType(name = type))

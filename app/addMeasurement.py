@@ -1,25 +1,25 @@
 from .database import db
 from .models import User, Sensor, Measurement
+from datetime import datetime
 
-def addMeasurement(mqttDataPacket):
-    userId = mqttDataPacket.userId
-    sensorId = mqttDataPacket.sensorId
-    time = mqttDataPacket.time
-    date = mqttDataPacket.date
-    value = mqttDataPacket.value
-
+def addMeasurement(userId, sensorId, value):
     if User.query.filter_by(id = userId).first() is None:
         return
     
     if Sensor.query.filter_by(id = sensorId).first() is None:
         return
     
+    now = datetime.now()
+    
     newMeasurement = Measurement(
         sensorId = sensorId,
-        measurementTime = time,
-        measurementDate = date,
+        measurementTime = now.time(),
+        measurementDate = now.date(),
         measurementValue = value
     )
+
+    print(f"Adding new data to sensor {newMeasurement.sensorId}: "
+        f"{newMeasurement.measurementTime, newMeasurement.measurementDate, newMeasurement.measurementValue}")
 
     db.session.add(newMeasurement)
     db.session.commit()
