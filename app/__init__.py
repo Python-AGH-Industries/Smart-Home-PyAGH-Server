@@ -37,8 +37,8 @@ def create_app():
 
         # Creating and initializing database
         db.create_all()
-        # init_enums()
-        # init_dummy()
+        init_enums()
+        init_dummy()
 
         # Connecting to MQTT broker
         mqtt_connect()
