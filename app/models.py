@@ -47,7 +47,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
     def __repr__(self):
-        return f"<User {self.id}: {self.username}>"
+        return f"<User {self.id}: {self.username}, Plan: {self.userplan_id}>"
 
 # Event listener to create sensors after user creation
 # Each user the amount of person based on their plan
@@ -97,8 +97,9 @@ class Sensor(db.Model):
     )
 
     def __repr__(self):
-        return f"<Sensor {self.id}: {self.name} (User {self.user_id})>"
-
+        return f"<Sensor {self.id}: {self.name} (User {self.user_id})>, type: {self.type_id}"
+    def serialize(self):
+        return {"id":self.id,"name":self.name,"user_id":self.user_id,"type_id":self.type_id}
 # sensor reading database
 class Measurement(db.Model):
     id = db.Column(db.Integer, primary_key = True)

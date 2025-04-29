@@ -9,8 +9,8 @@ def addUser():
     userplan = request.json["userplan"]
 
     if User.query.filter_by(username = username).first() is None:
-        newUser = User(username = username, userplan = userplan)
-        newUser.setPassword(password)
+        newUser = User(username = username, userplan_id = userplan)
+        newUser.set_password(password)
         db.session.add(newUser)
         db.session.commit()
         return jsonify({"message": "User added"}), 200

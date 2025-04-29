@@ -7,15 +7,16 @@ def login():
     username = request.json["username"]
     password = request.json["password"]
     userData = User.query.filter_by(username = username).first()
-
     if userData is not None:
         if not current_user.is_authenticated:
-            if userData.checkPassword(password):
+            if userData.check_password(password):
                 login_user(userData)
-                return jsonify({"message": "Logged successfully"}), 200
+                print(userData.is_authenticated)
+                print(userData.get_id())
+                return jsonify({"message": "Logged successfully", "success":True}), 200
             else:
-                return jsonify({"message": "Wrong password"}), 400
+                return jsonify({"message": "Wrong password","success":False}), 400
         else:
-            return jsonify({"message": "User is already logged in"}), 400
+            return jsonify({"message": "User is already logged in","success":False}), 400
     else:
-        return jsonify({"message": "User does not exist"}), 400
+        return jsonify({"message": "User does not exist","success":False}), 400
