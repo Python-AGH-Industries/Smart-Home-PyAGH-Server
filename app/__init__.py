@@ -2,17 +2,14 @@ from .models import User, init_enums, init_dummy
 from .routes import routes
 from .mqttUtils import mqtt_connect
 from .database import db
+from .flask_app import app
 import os
 
-from flask import Flask
 from flask_login import LoginManager
 
 baseDir = os.path.abspath(os.path.dirname(__file__))
 
-
 def create_app():
-    app = Flask(__name__, instance_relative_config = True)
-
     db_dir = os.path.join(baseDir, "../database")
     os.makedirs(db_dir, exist_ok = True)
 
@@ -34,7 +31,6 @@ def create_app():
     routes(app)
 
     with app.app_context():
-
         # Creating and initializing database
         db.create_all()
         init_enums()
