@@ -6,6 +6,9 @@ from flask_login import current_user,login_required
 @login_required
 def readSensorData():
     sensor_id = request.json["sensor_id"]
-    data = Measurement.query.filter_by(sensorId = sensor_id).all()
-    print(data)
-    return "A"
+    data = Measurement.query.filter_by(sensorId=sensor_id).all()
+    response = []
+    for mes in data:
+        response.append(mes.serialize())
+    print(response)
+    return jsonify({"sensor_data":response})

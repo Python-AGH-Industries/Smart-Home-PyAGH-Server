@@ -8,6 +8,8 @@ def getUserSensors():
     user = User.query.filter_by(username = current_user.username).first()
     sensor_data = Sensor.query.filter_by(user_id = user.id,type_id=type_id).all()
     data = []
+    print(Sensor.query.all())
+
     for sensor in sensor_data:
 
         data.append(sensor.serialize())

@@ -1,5 +1,6 @@
 from app import getAllUsers
 from app.addUser import addUser
+from app.getUserData import getUserData
 from app.getUserSensors import getUserSensors
 from app.login import login
 from app.logout import logout
@@ -14,4 +15,6 @@ def routes(app):
 
     app.add_url_rule('/readSensorData', 'readSensorData', readSensorData, methods=["POST"])
     app.add_url_rule('/getUserSensors', 'getUserSensors', getUserSensors, methods=["POST"])
+    app.add_url_rule('/getUserData', 'getUserData', getUserData, methods=["POST"])
+
     app.add_url_rule('/getAllUsers', 'getAllUsers', getAllUsers)
