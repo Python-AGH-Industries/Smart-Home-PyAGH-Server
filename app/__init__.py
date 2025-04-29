@@ -33,8 +33,8 @@ def create_app():
     with app.app_context():
         # Creating and initializing database
         db.create_all()
-        init_enums()
-        # init_dummy()
+        #init_enums()
+        #init_dummy()
 
         # Connecting to MQTT broker
         mqtt_connect()
