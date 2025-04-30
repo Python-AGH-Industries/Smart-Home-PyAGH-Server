@@ -10,5 +10,4 @@ def readSensorData():
     response = []
     for mes in data:
         response.append(mes.serialize())
-    print(response)
     return jsonify({"sensor_data":response})
