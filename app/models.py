@@ -102,7 +102,13 @@ class Sensor(db.Model):
     def __repr__(self):
         return f"<Sensor {self.id}: {self.name} (User {self.user_id})>, type: {self.type_id}"
     def serialize(self):
-        return {"id":self.id,"name":self.name,"user_id":self.user_id,"type_id":self.type_id}
+        return {
+            "id": self.id,
+            "name": self.name,
+            "user_id": self.user_id,
+            "type_id": self.type_id
+        }
+    
 # sensor reading database
 class Measurement(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -113,8 +119,14 @@ class Measurement(db.Model):
 
     def __repr__(self):
         return f"<Sensor {self.sensorId} - Value:{self.measurementValue}>"
+    
     def serialize(self):
-        return {"id":self.sensorId,"measurementValue":self.measurementValue,"measurementTime":self.measurementTime.isoformat(),"measurementDate":self.measurementDate}
+        return {
+            "id": self.sensorId,
+            "measurementValue": self.measurementValue,
+            "measurementTime": self.measurementTime.isoformat(),
+            "measurementDate": self.measurementDate
+        }
 
 def type_name_to_id(type_name):
     return SensorType.query.filter_by(name = type_name).first()
