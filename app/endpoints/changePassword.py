@@ -7,7 +7,7 @@ def changePassword():
     username = request.json["username"]
     newPassword = request.json["newPassword"]
     oldPassword = request.json["oldPassword"]
-    
+
     userData = User.query.filter_by(username = username).first()
 
     if userData is not None:
@@ -21,16 +21,16 @@ def changePassword():
                 }), 200
             else:
                 return jsonify({
-                    "message": "Wrong password",
+                    "error": "Wrong password",
                     "success": False
                 }), 400
         else:
             return jsonify({
-                "message": "User is already logged in",
+                "error": "User is already logged in",
                 "success": False
             }), 400
     else:
         return jsonify({
-            "message": "User does not exist",
+            "error": "User does not exist",
             "success": False
         }), 400

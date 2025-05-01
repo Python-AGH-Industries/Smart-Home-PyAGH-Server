@@ -20,16 +20,16 @@ def login():
                 }), 200
             else:
                 return jsonify({
-                    "message": "Wrong password",
+                    "error": "Wrong password",
                     "success": False
                 }), 400
         else:
             return jsonify({
-                "message": "User is already logged in",
+                "error": "User is already logged in",
                 "success": False
             }), 400
     else:
         return jsonify({
-            "message": "User does not exist",
+            "error": "User does not exist",
             "success": False
         }), 400

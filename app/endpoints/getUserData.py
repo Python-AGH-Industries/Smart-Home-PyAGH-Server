@@ -7,4 +7,4 @@ def getUserData():
         "user_id": current_user.id,
         "username": current_user.username, 
         "userplan": current_user.userplan_id
-    })
+    }), 200

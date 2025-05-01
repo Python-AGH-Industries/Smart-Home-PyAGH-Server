@@ -15,6 +15,6 @@ def getUserSensors():
     data = []
 
     for sensor in sensor_data:
-
         data.append(sensor.serialize())
-    return jsonify({"sensors":data})
+
+    return jsonify({"sensors": data})

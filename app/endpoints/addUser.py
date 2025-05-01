@@ -15,5 +15,5 @@ def addUser():
         db.session.commit()
         return jsonify({"message": "User added"}), 200
     else:
-        return jsonify({"message": "User already exists"}), 400
+        return jsonify({"error": "User already exists"}), 400
 

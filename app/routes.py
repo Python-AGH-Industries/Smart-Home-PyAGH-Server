@@ -46,7 +46,7 @@ def routes(app):
         '/changeSensorName',
         'changeSensorName',
         changeSensorName,
-        method = ["POST"]
+        methods = ["POST"]
     )
     
     # DELETE

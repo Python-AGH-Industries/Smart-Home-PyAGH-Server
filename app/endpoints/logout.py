@@ -3,4 +3,4 @@ from flask_login import logout_user
 
 def logout():
     logout_user()
-    return jsonify({"message": "Logged out"}), 200
+    return jsonify({"response": "Logged out"}), 200
