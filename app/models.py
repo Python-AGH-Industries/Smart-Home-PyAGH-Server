@@ -99,6 +99,9 @@ class Sensor(db.Model):
         cascade='all, delete-orphan'
     )
 
+    def set_name(self, new_name):
+        self.name = new_name
+
     def __repr__(self):
         return f"<Sensor {self.id}: {self.name} " \
                f"(User {self.user_id})>, type: {self.type_id}"

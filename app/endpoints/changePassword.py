@@ -7,6 +7,7 @@ def changePassword():
     username = request.json["username"]
     newPassword = request.json["newPassword"]
     oldPassword = request.json["oldPassword"]
+    
     userData = User.query.filter_by(username = username).first()
 
     if userData is not None:
