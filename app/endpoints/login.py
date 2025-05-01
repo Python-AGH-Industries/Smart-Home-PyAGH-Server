@@ -13,10 +13,23 @@ def login():
                 login_user(userData)
                 print(userData.is_authenticated)
                 print(userData.get_id())
-                return jsonify({"message": "Logged successfully", "success":True}), 200
+
+                return jsonify({
+                    "message": "Logged successfully",
+                    "success": True
+                }), 200
             else:
-                return jsonify({"message": "Wrong password","success":False}), 400
+                return jsonify({
+                    "message": "Wrong password",
+                    "success": False
+                }), 400
         else:
-            return jsonify({"message": "User is already logged in","success":False}), 400
+            return jsonify({
+                "message": "User is already logged in",
+                "success": False
+            }), 400
     else:
-        return jsonify({"message": "User does not exist","success":False}), 400
+        return jsonify({
+            "message": "User does not exist",
+            "success": False
+        }), 400

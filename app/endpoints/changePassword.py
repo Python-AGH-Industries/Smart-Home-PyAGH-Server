@@ -14,10 +14,22 @@ def changePassword():
             if userData.check_password(oldPassword):
                 userData.set_password(newPassword)
                 db.session.commit()
-                return jsonify({"respone": "Password changed", "success": True}), 200
+                return jsonify({
+                    "respone": "Password changed",
+                    "success": True
+                }), 200
             else:
-                return jsonify({"message": "Wrong password", "success": False}), 400
+                return jsonify({
+                    "message": "Wrong password",
+                    "success": False
+                }), 400
         else:
-            return jsonify({"message": "User is already logged in", "success": False}), 400
+            return jsonify({
+                "message": "User is already logged in",
+                "success": False
+            }), 400
     else:
-        return jsonify({"message": "User does not exist", "success": False}), 400
+        return jsonify({
+            "message": "User does not exist",
+            "success": False
+        }), 400

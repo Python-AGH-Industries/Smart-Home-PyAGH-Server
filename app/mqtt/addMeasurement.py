@@ -18,8 +18,7 @@ def addMeasurement(userId, sensorId, value):
         measurementValue = value
     )
 
-    print(f"Adding new data to sensor {newMeasurement.sensorId}: "
-        f"{newMeasurement.measurementTime, newMeasurement.measurementDate, newMeasurement.measurementValue}")
+    print(f"Adding new data to sensor {newMeasurement.sensorId}")
 
     db.session.add(newMeasurement)
     db.session.commit()

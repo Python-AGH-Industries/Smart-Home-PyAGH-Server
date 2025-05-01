@@ -92,10 +92,14 @@ def on_message(client, userdata, msg):
     with app.app_context():
         reads_per_user = get_max_per_user(userId)
         for i in range(len(sensor_types)):
-            type_id = SensorType.query.filter_by(name = sensor_types[i]).first().id
+            type_id = SensorType.query.filter_by(
+                name = sensor_types[i]
+            ).first().id
+
             sensors = Sensor.query.filter_by(
                 type_id = type_id,
                 user_id = userId
             ).order_by(Sensor.id).all()
+            
             for j in range(reads_per_user):
                 addMeasurement(userId, sensors[j].id, data[i][j])

@@ -1,4 +1,4 @@
-from flask import request ,jsonify
+from flask import request, jsonify
 from app.models import Measurement
 from flask_login import login_required
 

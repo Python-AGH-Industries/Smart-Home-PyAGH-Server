@@ -100,7 +100,9 @@ class Sensor(db.Model):
     )
 
     def __repr__(self):
-        return f"<Sensor {self.id}: {self.name} (User {self.user_id})>, type: {self.type_id}"
+        return f"<Sensor {self.id}: {self.name} " \
+               f"(User {self.user_id})>, type: {self.type_id}"
+    
     def serialize(self):
         return {
             "id": self.id,
@@ -112,7 +114,11 @@ class Sensor(db.Model):
 # sensor reading database
 class Measurement(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    sensorId = db.Column(db.Integer, db.ForeignKey('sensor.id'), nullable = False)
+    sensorId = db.Column(
+        db.Integer,
+        db.ForeignKey('sensor.id'),
+        nullable = False
+    )
     measurementTime = db.Column(db.Time, nullable = False)
     measurementDate = db.Column(db.Date, nullable = False)
     measurementValue = db.Column(db.Integer, nullable = True)
