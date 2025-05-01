@@ -1,6 +1,6 @@
 from flask import request, jsonify
 
-from .database import db
+from ..components.database import db
 from app.models import User
 
 def addUser():

@@ -1,23 +1,30 @@
-from app import getAllUsers
-from app.addUser import addUser
-from app.getUserData import getUserData
-from app.getUserSensors import getUserSensors
-from app.login import login
-from app.logout import logout
-from app.getAllUsers import getAllUsers
-from app.readSensorData import readSensorData
-from app.changePassword import changePassword
-from app.deleteAccount import deleteAccount
+from app.endpoints import getAllUsers
+from app.endpoints.addUser import addUser
+from app.endpoints.getUserData import getUserData
+from app.endpoints.getUserSensors import getUserSensors
+from app.endpoints.login import login
+from app.endpoints.logout import logout
+from app.endpoints.getAllUsers import getAllUsers
+from app.endpoints.readSensorData import readSensorData
+from app.endpoints.changePassword import changePassword
+from app.endpoints.deleteAccount import deleteAccount
 
 def routes(app):
-    app.add_url_rule('/login', 'login', login, methods=["POST"])
+    # CREATE
     app.add_url_rule('/addUser', 'addUser', addUser, methods=["POST"])
-    app.add_url_rule('/logout', 'logout', logout, methods=["POST"])
-    app.add_url_rule('/changePassword', 'changePassword', changePassword, methods=["POST"])
-    app.add_url_rule('/deleteAccount', 'deleteAccount', deleteAccount, methods=["POST"])
-
+    
+    # READ
     app.add_url_rule('/readSensorData', 'readSensorData', readSensorData, methods=["POST"])
     app.add_url_rule('/getUserSensors', 'getUserSensors', getUserSensors, methods=["POST"])
     app.add_url_rule('/getUserData', 'getUserData', getUserData, methods=["POST"])
-
     app.add_url_rule('/getAllUsers', 'getAllUsers', getAllUsers)
+
+    # UPDATE
+    app.add_url_rule('/changePassword', 'changePassword', changePassword, methods=["POST"])
+    
+    # DELETE
+    app.add_url_rule('/deleteAccount', 'deleteAccount', deleteAccount, methods=["POST"])
+
+    # LOGIN
+    app.add_url_rule('/login', 'login', login, methods=["POST"])
+    app.add_url_rule('/logout', 'logout', logout, methods=["POST"])

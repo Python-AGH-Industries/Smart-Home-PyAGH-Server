@@ -1,5 +1,5 @@
 from app import create_app
-from app.flask_app import app
+from app.components.flask_app import app
 
 app = create_app()
 

@@ -1,7 +1,6 @@
 from flask import request ,jsonify
-from app.models import User, Sensor, Measurement
-from flask_login import current_user,login_required
-
+from app.models import Measurement
+from flask_login import login_required
 
 @login_required
 def readSensorData():

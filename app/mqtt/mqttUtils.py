@@ -1,8 +1,8 @@
 import paho.mqtt.client as mqtt
 import datetime
 
-from .models import SensorType, Sensor, sensor_types, get_max_per_user
-from .flask_app import app
+from ..models import SensorType, Sensor, sensor_types, get_max_per_user
+from ..components.flask_app import app
 from .addMeasurement import addMeasurement
 
 DATA_TOPIC = "pyagh/smarthome/sensors/data"

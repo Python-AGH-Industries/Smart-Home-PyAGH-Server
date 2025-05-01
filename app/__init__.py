@@ -1,8 +1,8 @@
 from .models import User, init_enums, init_dummy
 from .routes import routes
-from .mqttUtils import mqtt_connect
-from .database import db
-from .flask_app import app
+from .mqtt.mqttUtils import mqtt_connect
+from .components.database import db
+from .components.flask_app import app
 import os
 
 from flask_login import LoginManager

@@ -1,6 +1,6 @@
 from flask import request, jsonify
-from .database import db 
-from .models import User
+from ..components.database import db 
+from ..models import User
 
 def deleteAccount():
     username = request.json["username"]

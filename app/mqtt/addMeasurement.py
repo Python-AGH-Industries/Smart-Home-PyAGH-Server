@@ -1,5 +1,5 @@
-from .database import db
-from .models import User, Sensor, Measurement
+from ..components.database import db
+from ..models import User, Sensor, Measurement
 from datetime import datetime
 
 def addMeasurement(userId, sensorId, value):

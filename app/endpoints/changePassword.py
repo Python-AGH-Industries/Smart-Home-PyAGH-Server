@@ -1,7 +1,7 @@
 from flask import request, jsonify
 from flask_login import current_user
-from .models import User
-from .database import db
+from ..models import User
+from ..components.database import db
 
 def changePassword():
     username = request.json["username"]

@@ -2,7 +2,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy import event
 
-from .database import db
+from .components.database import db
 
 sensor_types = ["TEMPERATURE", "HUMIDITY", "PRESSURE", "LIGHT"]
 user_plans = [("FREE", 3), ("STANDARD", 6), ("PREMIUM", 9)]
