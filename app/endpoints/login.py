@@ -26,8 +26,8 @@ def login():
         else:
             return jsonify({
                 "error": "User is already logged in",
-                "success": False
-            }), 400
+                "success": True
+            }), 200
     else:
         return jsonify({
             "error": "User does not exist",
